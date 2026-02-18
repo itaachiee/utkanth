@@ -79,17 +79,17 @@ a{color:inherit;text-decoration:none}
 .btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.18);background: rgba(255,255,255,.05)}
 .btn.primary{border-color: rgba(124,92,255,.45);background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(39,193,255,.10))}
 
-.heroRight{
-  min-height:240px;
-  border-left:1px solid rgba(255,255,255,.08);
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-    radial-gradient(900px 260px at 70% 10%, rgba(39,193,255,.18), transparent 60%),
-    url("./portfolio_cert_assets/icon.png?auto=format&fit=crop&w=1200&q=60");
-  background-size: contain;
+.heroRight {
+  min-height: 240px;
+  border-left: 1px solid rgba(255,255,255,.08);
+  background: 
+    linear-gradient(90deg, var(--bg) 0%, transparent 20%), /* Fades the edge */
+    url("./portfolio_cert_assets/icon.png");
+  background-size: 140%; /* Makes it large enough to crop out some of the square border */
+  background-position: 40% center; /* Adjusts horizontal focus */
   background-repeat: no-repeat;
-  background-position:center;
 }
+
 .socialRow{display:flex;gap:10px;margin-top:14px}
 .socialPill{padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:rgba(255,255,255,.8);font-size:12px}
 
