@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Utkanth Tevar — Portfolio</title>
+<style>
+:root{
+  --bg:#0b0f14; --panel:#0f1621; --panel2:#0c131d;
+  --text:#e7eefc; --muted:#a8b3c7; --line:#1b2a3d;
+  --brand:#7c5cff; --brand2:#27c1ff;
+  --radius:18px; --shadow:0 12px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 700px at 20% 0%, rgba(124,92,255,.25), transparent 60%),
+    radial-gradient(900px 600px at 90% 10%, rgba(39,193,255,.18), transparent 55%),
+    radial-gradient(800px 600px at 60% 100%, rgba(31,227,107,.10), transparent 60%),
+    var(--bg);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+.wrap{display:grid;grid-template-columns: 280px 1fr;min-height:100vh}
+.sidebar{
+  position:sticky; top:0; height:100vh; padding:16px;
+  border-right:1px solid rgba(255,255,255,.06);
+  background: linear-gradient(180deg, rgba(15,22,33,.85), rgba(15,22,33,.65));
+  backdrop-filter: blur(10px);
+}
+.sideCard{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.22);
+  border-radius: var(--radius);
+  padding:14px;
+}
+.avatar{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+  background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(39,193,255,.6));
+  border:1px solid rgba(255,255,255,.12); font-weight:900; letter-spacing:.5px;
+}
+.name{font-weight:900;margin-top:10px}
+.tag{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.4}
+.sideLinks{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.sideLinks a{padding:10px 10px;border-radius:14px;color:var(--muted);border:1px solid transparent;display:flex;justify-content:space-between;align-items:center}
+.sideLinks a:hover{background: rgba(255,255,255,.04);border-color: rgba(255,255,255,.08);color:var(--text)}
+.sideLinks a.active{background: linear-gradient(90deg, rgba(124,92,255,.18), rgba(39,193,255,.10));border-color: rgba(124,92,255,.35);color:var(--text)}
+.k{font-size:12px;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.10);padding:3px 8px;border-radius:999px;background: rgba(0,0,0,.18)}
+
+.main{padding:18px 18px 60px}
+.container{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+
+.section{
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.sectionInner{padding:18px}
+.sectionHead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:12px}
+.sectionHead h2{margin:0;font-size:18px;letter-spacing:-.2px}
+.sectionHead .rightLabel{color:rgba(255,255,255,.45);font-size:12px}
+.muted{color:var(--muted)}
+
+.hero{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:0;
+}
+.heroLeft{padding:22px}
+.heroTitle{font-size:34px;margin:0 0 10px;letter-spacing:-.5px}
+.heroSub{margin:0;color:var(--muted);font-size:13px;line-height:1.7;max-width:70ch}
+.heroActions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 12px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:var(--text);cursor:pointer;transition:.15s ease}
+.btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.18);background: rgba(255,255,255,.05)}
+.btn.primary{border-color: rgba(124,92,255,.45);background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(39,193,255,.10))}
+
+.heroRight{
+  min-height:240px;
+  border-left:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
+    radial-gradient(900px 260px at 70% 10%, rgba(39,193,255,.18), transparent 60%),
+    url("https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=60");
+  background-size:cover;
+  background-position:center;
+}
+.socialRow{display:flex;gap:10px;margin-top:14px}
+.socialPill{padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:rgba(255,255,255,.8);font-size:12px}
+
+.grid2{display:grid;grid-template-columns: 1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns: repeat(3, 1fr);gap:12px}
+
+.cardX{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  border-radius: 16px;
+  padding:14px;
+}
+.cardX-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cardX-title{font-weight:900;font-size:14px}
+.cardX-sub{color:rgba(255,255,255,.55);font-size:12px;margin-top:4px}
+.cardX-text{color:rgba(255,255,255,.70);font-size:12px;line-height:1.6;margin-top:8px}
+.cardX-list{margin:10px 0 0 16px;color:rgba(255,255,255,.70);font-size:12px;line-height:1.55}
+.cardX-list li{margin:6px 0}
+
+.certCard{display:flex;gap:12px;align-items:flex-start}
+.certIcon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:900;
+  background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(39,193,255,.18));
+  border:1px solid rgba(255,255,255,.10);
+}
+.pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{font-size:12px;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:rgba(255,255,255,.75)}
+
+.searchBar{display:flex;gap:10px;align-items:center}
+.searchBar input{width:100%;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.20);color:var(--text);outline:none}
+
+@media (max-width: 980px){
+  .wrap{grid-template-columns: 1fr}
+  .sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .hero{grid-template-columns:1fr}
+  .heroRight{min-height:180px;border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .grid3{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+}
+
+/* --- Certifications: Hybrid grid + modal --- */
+.certGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+@media (max-width: 980px){
+  .certGrid{grid-template-columns: 1fr;}
+}
+.certTile{
+  text-align:left;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  border-radius: 16px;
+  padding:14px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.certTile:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.03);
+}
+.certBadge{width:64px;height:64px;object-fit:contain;flex:0 0 auto}
+.certMeta{min-width:0}
+.certName{font-weight:900;font-size:14px}
+.certSub{color:rgba(255,255,255,.55);font-size:12px;margin-top:4px;line-height:1.4}
+
+/* Modal */
+.modalOverlay{
+  position:fixed; inset:0; z-index:9999;
+  background: rgba(0,0,0,.65);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.modal{
+  width:min(980px, 100%);
+  max-height: 90vh;
+  overflow:auto;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(15,22,33,.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+.modalHead{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 14px 8px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.modalTitle{font-weight:900}
+.modalSub{color:rgba(255,255,255,.55);font-size:12px;margin-top:4px}
+.modalActions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.modalBody{padding:14px}
+.modalImg{
+  width:100%;
+  height:auto;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.25);
+}
+.modalClose{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  border-radius: 12px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+.modalClose:hover{background: rgba(255,255,255,.05)}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside class="sidebar">
+    <div class="sideCard">
+      <div class="avatar">UT</div>
+      <div class="name">Utkanth Tevar</div>
+      <div class="tag">Security Researcher</div>
+      <div class="pillRow" style="margin-top:12px">
+        <span class="pill">Houston, TX</span>
+        <span class="pill">Open to roles</span>
+      </div>
+    </div>
+
+    <div class="sideLinks" id="nav">
+      <a href="#home" class="active">Home <span class="k">1</span></a>
+      <a href="#skills-exp">Skills & Experience <span class="k">2</span></a>
+      <a href="#certs">Certifications <span class="k">3</span></a>
+      <a href="#blogs">Blogs <span class="k">4</span></a>
+      <a href="#writeups">Writeups <span class="k">5</span></a>
+      <a href="#gitbooks">GitBooks <span class="k">6</span></a>
+      <a href="#badges">Badges <span class="k">7</span></a>
+      <a href="#schedule">Schedule Meeting <span class="k">8</span></a>
+      <a href="#search">Search <span class="k">9</span></a>
+    </div>
+
+    <div class="sideCard" style="margin-top:14px">
+      <div class="muted" style="font-size:12px;line-height:1.6">
+        <div><b>Email:</b> <a href="mailto:utkanth.tevar@gmail.com">utkanth.tevar@gmail.com</a></div>
+        <div><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/utkanthtevar/" target="_blank" rel="noreferrer">Open</a></div>
+        <div><b>GitHub:</b> <a href="#" target="_blank" rel="noreferrer">Open</a></div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn primary" href="mailto:utkanth.tevar@gmail.com?subject=Portfolio%20Inquiry">Contact</a>
+        <a class="btn" href="#" download>Download CV</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="container">
+
+      <section id="home" class="section">
+        <div class="hero">
+          <div class="heroLeft">
+            <div class="muted" style="font-size:12px">Security Researcher</div>
+            <h1 class="heroTitle">Utkanth Tevar</h1>
+            <p class="heroSub">
+              Security Researcher. This layout separates each section into its own block (like the TipsyTux PDF style),
+              with sidebar navigation and clean “cards” inside each block.
+            </p>
+            <div class="socialRow">
+              <a class="socialPill" href="#" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="socialPill" href="https://www.linkedin.com/in/utkanthtevar/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a class="socialPill" href="mailto:utkanth.tevar@gmail.com">Email</a>
+            </div>
+            <div class="heroActions">
+              <a class="btn primary" href="#skills-exp">Skills & Experience</a>
+              <a class="btn" href="#certs">Certifications</a>
+              <a class="btn" href="#writeups">Writeups</a>
+            </div>
+          </div>
+          <div class="heroRight" aria-label="hero image"></div>
+        </div>
+      </section>
+
+      <section id="skills-exp" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>Skills and Experiences</h2>
+              <div class="muted" style="font-size:12px">Grouped cards + a separate work/education column.</div>
+            </div>
+            <div class="rightLabel">My Skills and Experiences</div>
+          </div>
+
+          <div class="grid2">
+            <div>
+              <div class="grid2" style="grid-template-columns: 1fr 1fr">
+                
+      <div class="cardX">
+        <div class="cardX-head">
+          <div class="cardX-title">Offensive Security</div>
+        </div>
+        <ul class="cardX-list"><li>Penetration Testing (Network, Web, AD)</li><li>Vulnerability Assessment &amp; Exploitation</li><li>Red Teaming Methodologies</li><li>OT/ICS Security Assessment</li><li>Social Engineering</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div class="cardX-title">Network Security</div>
+        </div>
+        <ul class="cardX-list"><li>Firewall &amp; IDS/IPS Configuration</li><li>SIEM Management &amp; Log Analysis</li><li>Incident Triage &amp; Threat Hunting</li><li>Network Hardening</li><li>Cisco CCNA Administration</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div class="cardX-title">Security Operations</div>
+        </div>
+        <ul class="cardX-list"><li>SOC Monitoring &amp; Analysis</li><li>Digital Forensics</li><li>Risk Management</li><li>Security Documentation &amp; Audits</li><li>Remediation Planning</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div class="cardX-title">Teaching &amp; Mentorship</div>
+        </div>
+        <ul class="cardX-list"><li>Cybersecurity Instruction (60+ students)</li><li>Hands-on Lab Design (75+ hrs)</li><li>OSCP/CEH/CCNA Mentorship</li><li>Technical Writing &amp; Feedback</li><li>Academic Curriculum Support</li></ul>
+      </div>
+    
+              </div>
+            </div>
+            <div>
+              <div class="cardX" style="margin-bottom:12px">
+                <div class="cardX-title">Work</div>
+                <div class="cardX-text muted">Imported from your resume HTML.</div>
+              </div>
+              <div class="list">
+                
+      <div class="cardX">
+        <div class="cardX-head">
+          <div>
+            <div class="cardX-title">Teaching Assistant</div>
+            <div class="cardX-sub">🎓 University of Houston • Aug 2025 – Present Houston, TX</div>
+          </div>
+        </div>
+        <ul class="cardX-list"><li>Supported instruction across 4 undergraduate sections (280+ students) for CIS 3330 – Information Systems in Organizations and CIS 3343 – Systems Analysis and Design.</li><li>Evaluated and graded 300+ assignments, case studies, and research papers per semester.</li><li>Guided students in systems analysis methodologies, business process modeling, and structured research development.</li><li>Provided academic mentorship and feedback to improve technical writing and analytical reasoning skills.</li><li>Coordinated with faculty to maintain grading consistency across multiple sections.</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div>
+            <div class="cardX-title">Cybersecurity Trainer</div>
+            <div class="cardX-sub">🛡️ Cybersense IT Training Institute • Jan 2024 – Jul 2024 India</div>
+          </div>
+        </div>
+        <ul class="cardX-list"><li>Delivered cybersecurity instruction to 60 students across 5 training cohorts (12 students per batch).</li><li>Conducted 75+ hours of live, hands-on training sessions (1.5 hours per session).</li><li>Designed and facilitated practical labs covering Linux administration, networking fundamentals, and penetration testing concepts.</li><li>Mentored students preparing for RHCSA, CCNA, CEH, and OSCP certification pathways.</li><li>Evaluated student performance through structured assessments and practical lab validation.</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div>
+            <div class="cardX-title">Network Security Engineer</div>
+            <div class="cardX-sub">🔒 Pyramid Infotech • Mar 2022 – Dec 2023 21 months</div>
+          </div>
+        </div>
+        <ul class="cardX-list"><li>Managed firewall, IDS/IPS, and SIEM configurations across enterprise network environments.</li><li>Conducted recurring internal and external vulnerability assessments and documented remediation recommendations.</li><li>Analyzed security alerts and logs to support incident triage and threat identification.</li><li>Developed and maintained security documentation to support audit readiness and operational continuity.</li><li>Collaborated with cross-functional teams to implement network hardening and access control improvements.</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div>
+            <div class="cardX-title">Network Security Engineer (Intern)</div>
+            <div class="cardX-sub">🔒 Pyramid Infotech • Aug 2021 – Mar 2022 7 months</div>
+          </div>
+        </div>
+        <ul class="cardX-list"><li>Supported senior engineers in firewall rule configuration and access control management.</li><li>Assisted in vulnerability scanning and remediation tracking processes.</li><li>Conducted threat research and summarized emerging security risks for internal awareness.</li><li>Contributed to operational security monitoring activities and log analysis tasks.</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div>
+            <div class="cardX-title">MS Cybersecurity</div>
+            <div class="cardX-sub">🎓 University of Houston, United States • Aug 2024 – May 2026 GPA: 4.0</div>
+          </div>
+        </div>
+        <ul class="cardX-list"><li>Penetration Testing, OT/ICS Security, Network Security, SOC, Digital Forensics, Risk Management</li></ul>
+      </div>
+    
+
+      <div class="cardX">
+        <div class="cardX-head">
+          <div>
+            <div class="cardX-title">B.Eng. Computer Engineering</div>
+            <div class="cardX-sub">🎓 Gujarat Technological University, India • Sep 2017 – Jul 2021</div>
+          </div>
+        </div>
+        <ul class="cardX-list"><li>Computer Network, Cybersecurity, Compiler Design, Data Structure, Analysis and Design of Algorithms</li></ul>
+      </div>
+    
+              </div>
+
+              <div style="height:12px"></div>
+
+              <div class="cardX" style="margin-bottom:12px">
+                <div class="cardX-title">Education</div>
+                <div class="cardX-text muted">Optional — add if you want it shown here.</div>
+              </div>
+              <div class="list">
+                <div class='muted'>Add education items (optional).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+<section id="certs" class="section">
+  <div class="sectionInner">
+    <div class="sectionHead">
+      <div>
+        <h2>Certifications</h2>
+        <div class="muted" style="font-size:12px">Badge grid → click to view full certificate + verification link.</div>
+      </div>
+      <div class="rightLabel">My Certifications</div>
+    </div>
+
+    <div class="certGrid" data-searchable>
+      
+      <button class="certTile" type="button"
+        data-title="OSCP+"
+        data-subtitle="OffSec Certified Professional Plus"
+        data-full="./portfolio_cert_assets/oscp_plus_full.png"
+        data-verify="https://credentials.offsec.com/6e5e9c72-e677-43f0-b3d1-4f41c11c31fb#acc.UhyvSfDG"
+      >
+        <img class="certBadge" src="./portfolio_cert_assets/oscp_plus_badge.png" alt="OSCP+ badge" loading="lazy"/>
+        <div class="certMeta">
+          <div class="certName">OSCP+</div>
+          <div class="certSub">OffSec Certified Professional Plus</div>
+        </div>
+      </button>
+    
+
+      <button class="certTile" type="button"
+        data-title="OSCP"
+        data-subtitle="OffSec Certified Professional"
+        data-full="./portfolio_cert_assets/oscp_full.png"
+        data-verify="https://credentials.offsec.com/647b21fe-deab-4c02-8610-8017519d3af4#acc.Otuvskh9"
+      >
+        <img class="certBadge" src="./portfolio_cert_assets/oscp_badge.png" alt="OSCP badge" loading="lazy"/>
+        <div class="certMeta">
+          <div class="certName">OSCP</div>
+          <div class="certSub">OffSec Certified Professional</div>
+        </div>
+      </button>
+    
+
+      <button class="certTile" type="button"
+        data-title="CEH (Practical)"
+        data-subtitle="EC‑Council • Certified Ethical Hacker (Practical)"
+        data-full="./portfolio_cert_assets/ceh_practical_full.png"
+        data-verify=""
+      >
+        <img class="certBadge" src="./portfolio_cert_assets/ceh_practical_badge.png" alt="CEH (Practical) badge" loading="lazy"/>
+        <div class="certMeta">
+          <div class="certName">CEH (Practical)</div>
+          <div class="certSub">EC‑Council • Certified Ethical Hacker (Practical)</div>
+        </div>
+      </button>
+    
+
+      <button class="certTile" type="button"
+        data-title="eJPT"
+        data-subtitle="INE • Junior Penetration Tester"
+        data-full="./portfolio_cert_assets/ejpt_full.png"
+        data-verify="https://certs.ine.com/5938668e-8322-414b-8752-db70f17ea58d"
+      >
+        <img class="certBadge" src="./portfolio_cert_assets/ejpt_badge.png" alt="eJPT badge" loading="lazy"/>
+        <div class="certMeta">
+          <div class="certName">eJPT</div>
+          <div class="certSub">INE • Junior Penetration Tester</div>
+        </div>
+      </button>
+    
+
+      <button class="certTile" type="button"
+        data-title="TryHackMe PT1"
+        data-subtitle="TryHackMe • Penetration Tester 1"
+        data-full=""
+        data-verify="https://assets.tryhackme.com/certification-certificate/68858049373aacdee428ad6b.pdf"
+      >
+        <img class="certBadge" src="./portfolio_cert_assets/thm_pt1_badge.png" alt="TryHackMe PT1 badge" loading="lazy"/>
+        <div class="certMeta">
+          <div class="certName">TryHackMe PT1</div>
+          <div class="certSub">TryHackMe • Penetration Tester 1</div>
+        </div>
+      </button>
+    
+    </div>
+  </div>
+</section>
+
+
+      <section id="blogs" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>Blogs</h2>
+              <div class="muted" style="font-size:12px">Add your real blog links (Medium/Substack/custom).</div>
+            </div>
+            <div class="rightLabel">My Recent Blogs</div>
+          </div>
+          <div class="grid3" data-searchable>
+            <div class="cardX">
+              <div class="cardX-title">Placeholder Blog</div>
+              <div class="cardX-sub">Published: —</div>
+              <div class="cardX-text">Drop your blog title, platform, and link here.</div>
+              <div class="pillRow"><span class="pill">Tag</span></div>
+            </div>
+            <div class="cardX">
+              <div class="cardX-title">Placeholder Blog</div>
+              <div class="cardX-sub">Published: —</div>
+              <div class="cardX-text">Drop your blog title, platform, and link here.</div>
+              <div class="pillRow"><span class="pill">Tag</span></div>
+            </div>
+            <div class="cardX">
+              <div class="cardX-title">Placeholder Blog</div>
+              <div class="cardX-sub">Published: —</div>
+              <div class="cardX-text">Drop your blog title, platform, and link here.</div>
+              <div class="pillRow"><span class="pill">Tag</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="writeups" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>Writeups</h2>
+              <div class="muted" style="font-size:12px">CTF / lab writeups with links.</div>
+            </div>
+            <div class="rightLabel">My Recent Security Writeups</div>
+          </div>
+          <div class="grid3" data-searchable>
+            <div class="cardX">
+              <div class="cardX-title">Placeholder Writeup</div>
+              <div class="cardX-sub">Platform: —</div>
+              <div class="cardX-text">Add short summary + link.</div>
+            </div>
+            <div class="cardX">
+              <div class="cardX-title">Placeholder Writeup</div>
+              <div class="cardX-sub">Platform: —</div>
+              <div class="cardX-text">Add short summary + link.</div>
+            </div>
+            <div class="cardX">
+              <div class="cardX-title">Placeholder Writeup</div>
+              <div class="cardX-sub">Platform: —</div>
+              <div class="cardX-text">Add short summary + link.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gitbooks" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>GitBooks</h2>
+              <div class="muted" style="font-size:12px">Your notes / learning tracks.</div>
+            </div>
+            <div class="rightLabel">My Notes</div>
+          </div>
+          <div class="grid3" data-searchable>
+            <div class="cardX">
+              <div class="cardX-title">OT/ICS Notes</div>
+              <div class="cardX-text">Link your GitBook here.</div>
+            </div>
+            <div class="cardX">
+              <div class="cardX-title">AppSec Notes</div>
+              <div class="cardX-text">Link your GitBook here.</div>
+            </div>
+            <div class="cardX">
+              <div class="cardX-title">Cloud / Infra Notes</div>
+              <div class="cardX-text">Link your GitBook here.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="badges" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>Badges</h2>
+              <div class="muted" style="font-size:12px">Place images for cert badges / platforms.</div>
+            </div>
+            <div class="rightLabel">My Badges</div>
+          </div>
+          <div class="grid3">
+            <div class="cardX"><div class="cardX-title">Badge 1</div><div class="cardX-text">Add image/link</div></div>
+            <div class="cardX"><div class="cardX-title">Badge 2</div><div class="cardX-text">Add image/link</div></div>
+            <div class="cardX"><div class="cardX-title">Badge 3</div><div class="cardX-text">Add image/link</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="schedule" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>Schedule Meeting</h2>
+              <div class="muted" style="font-size:12px">Add Calendly / Google Calendar appointment link.</div>
+            </div>
+            <div class="rightLabel">Book Time</div>
+          </div>
+          <div class="cardX">
+            <div class="cardX-title">Meeting Link</div>
+            <div class="cardX-text">Replace this with your Calendly link or an embedded widget.</div>
+            <div style="margin-top:12px">
+              <a class="btn primary" href="#" target="_blank" rel="noreferrer">Open Scheduler</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="search" class="section">
+        <div class="sectionInner">
+          <div class="sectionHead">
+            <div>
+              <h2>Search</h2>
+              <div class="muted" style="font-size:12px">Filter content across sections.</div>
+            </div>
+            <div class="rightLabel">Search</div>
+          </div>
+
+          <div class="searchBar">
+            <input id="searchInput" placeholder="Type to filter cards (blogs, writeups, gitbooks, etc.)" />
+            <span class="k">Ctrl K</span>
+          </div>
+
+          <div class="muted" style="margin-top:10px;font-size:12px">
+            This search hides cards that don’t match your query (simple client-side filter).
+          </div>
+        </div>
+      </section>
+
+      <div class="muted" style="text-align:center;font-size:12px;margin-top:6px">
+        © <span id="year"></span> Utkanth Tevar
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+// Sidebar active link highlight
+const navLinks = Array.from(document.querySelectorAll("#nav a"));
+const targets = navLinks.map(a => document.querySelector(a.getAttribute("href")));
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      navLinks.forEach(a => a.classList.remove("active"));
+      const href = `#${entry.target.id}`;
+      const active = navLinks.find(a => a.getAttribute("href") === href);
+      if(active) active.classList.add("active");
+    }
+  });
+}, { rootMargin: "-45% 0px -50% 0px", threshold: 0.01 });
+targets.forEach(t => t && io.observe(t));
+
+// Search across "data-searchable" containers
+const searchInput = document.getElementById("searchInput");
+function runSearch(q){
+  const query = (q || "").trim().toLowerCase();
+  const items = Array.from(document.querySelectorAll("[data-searchable] .cardX, [data-searchable] .certCard"));
+  items.forEach(it => {
+    const text = it.innerText.toLowerCase();
+    it.style.display = (!query || text.includes(query)) ? "" : "none";
+  });
+}
+if(searchInput){
+  searchInput.addEventListener("input", e => runSearch(e.target.value));
+}
+document.addEventListener("keydown", (e) => {
+  const isMac = navigator.platform.toUpperCase().includes("MAC");
+  const mod = isMac ? e.metaKey : e.ctrlKey;
+  if(mod && e.key.toLowerCase() === "k"){ e.preventDefault(); searchInput && searchInput.focus(); }
+  if(e.key === "Escape"){ searchInput && searchInput.blur(); }
+});
+
+// Year
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<div class="modalOverlay" id="certModalOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+    <div class="modalHead">
+      <div>
+        <div class="modalTitle" id="certModalTitle">Certificate</div>
+        <div class="modalSub" id="certModalSub">—</div>
+      </div>
+      <div class="modalActions">
+        <a class="btn primary" id="certModalVerify" href="#" target="_blank" rel="noreferrer" style="display:none">Verify</a>
+        <button class="modalClose" id="certModalClose" type="button">Close</button>
+      </div>
+    </div>
+    <div class="modalBody">
+      <img class="modalImg" id="certModalImg" alt="Certificate image" style="display:none"/>
+      <div class="muted" id="certModalFallback" style="display:none;font-size:12px;line-height:1.6">
+        This certificate is provided as a verification link (PDF). Click “Verify” to view it.
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
