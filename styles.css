@@ -1,0 +1,258 @@
+:root{
+  --bg:#0b0f14; --panel:#0f1621; --panel2:#0c131d;
+  --text:#e7eefc; --muted:#a8b3c7; --line:#1b2a3d;
+  --brand:#7c5cff; --brand2:#27c1ff;
+  --radius:18px; --shadow:0 12px 40px rgba(0,0,0,.35);
+}
+
+html{scroll-behavior:smooth}
+a,button,input{font:inherit}
+:focus-visible{outline:2px solid rgba(39,193,255,.65); outline-offset:2px}
+
+/* Light theme (toggle adds data-theme="light" on <html>) */
+html[data-theme="light"]{
+  --bg:#f6f7fb; --panel:#ffffff; --panel2:#f2f4fa;
+  --text:#0b1220; --muted:#4b5567; --line:#d8deea;
+  --shadow:0 12px 40px rgba(15,23,42,.12);
+}
+
+/* Subtle reveal like Tipsy */
+.js .section{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease}
+.js .section.inview{opacity:1; transform:none}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 700px at 20% 0%, rgba(124,92,255,.25), transparent 60%),
+    radial-gradient(900px 600px at 90% 10%, rgba(39,193,255,.18), transparent 55%),
+    radial-gradient(800px 600px at 60% 100%, rgba(31,227,107,.10), transparent 60%),
+    var(--bg);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+.wrap{display:grid;grid-template-columns: 280px 1fr;min-height:100vh}
+.sidebar{
+  position:sticky; top:0; height:100vh; padding:16px;
+  border-right:1px solid rgba(255,255,255,.06);
+  background: linear-gradient(180deg, rgba(15,22,33,.85), rgba(15,22,33,.65));
+  backdrop-filter: blur(10px);
+}
+.sideCard{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.22);
+  border-radius: var(--radius);
+  padding:14px;
+}
+.avatar{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+  background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(39,193,255,.6));
+  border:1px solid rgba(255,255,255,.12); font-weight:900; letter-spacing:.5px;
+}
+.name{font-weight:900;margin-top:10px}
+.tag{color:var(--muted);font-size:12px;margin-top:4px;line-height:1.4}
+.sideLinks{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.sideLinks a{padding:10px 10px;border-radius:14px;color:var(--muted);border:1px solid transparent;display:flex;justify-content:space-between;align-items:center}
+.sideLinks a:hover{background: rgba(255,255,255,.04);border-color: rgba(255,255,255,.08);color:var(--text)}
+.sideLinks a.active{background: linear-gradient(90deg, rgba(124,92,255,.18), rgba(39,193,255,.10));border-color: rgba(124,92,255,.35);color:var(--text)}
+.k{font-size:12px;color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.10);padding:3px 8px;border-radius:999px;background: rgba(0,0,0,.18)}
+
+.main{padding:18px 18px 60px}
+.container{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+
+.section{
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.sectionInner{padding:18px}
+.sectionHead{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:12px}
+.sectionHead h2{margin:0;font-size:18px;letter-spacing:-.2px}
+.sectionHead .rightLabel{color:rgba(255,255,255,.45);font-size:12px}
+.muted{color:var(--muted)}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: stretch; /* Ensures both sides are the same height */
+}
+
+.heroLeft {
+  padding: 30px; /* Increased padding for a more premium "PhD candidate" look */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers text vertically against the icon */
+  gap: 12px; /* Uniformly spaces title, bio, and buttons */
+}
+
+.heroTitle {
+  margin: 0; /* Remove default margins to stop the "pushing" effect */
+}
+
+.heroSub {
+  margin: 0; 
+  margin-bottom: 8px; /* Small nudge above the buttons */
+}
+
+.heroActions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 12px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:var(--text);cursor:pointer;transition:.15s ease}
+.btn:hover{transform: translateY(-1px);border-color: rgba(255,255,255,.18);background: rgba(255,255,255,.05)}
+.btn.primary{border-color: rgba(124,92,255,.45);background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(39,193,255,.10))}
+
+.heroRight {
+  min-height: auto;
+  border-left: 1px solid rgba(255,255,255,.08);
+  /* Layer 1: The centered Icon | Layer 2: A dark gradient to fill space */
+  background: 
+    url("./portfolio_cert_assets/icon.png") no-repeat center / contain,
+    linear-gradient(90deg, var(--bg) 0%, rgba(15,22,33,0.8) 50%, var(--bg) 100%);
+  
+  /* Adds a glow effect that bleeds into the "extra space" */
+  box-shadow: inset 60px 0 80px -20px rgba(0,0,0,0.5); 
+}
+
+.hero-icon {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* The "magic" property: fits image without cropping */
+  filter: drop-shadow(0 0 15px rgba(124,92,255,0.2)); /* Adds a professional glow */
+}
+
+.socialRow{display:flex;gap:10px;margin-top:14px}
+.socialPill{padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:rgba(255,255,255,.8);font-size:12px}
+
+.grid2{display:grid;grid-template-columns: 1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns: repeat(3, 1fr);gap:12px}
+
+.cardX{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  border-radius: 16px;
+  padding:14px;
+}
+.cardX-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.cardX-title{font-weight:900;font-size:14px}
+.cardX-sub{color:rgba(255,255,255,.55);font-size:12px;margin-top:4px}
+.cardX-text{color:rgba(255,255,255,.70);font-size:12px;line-height:1.6;margin-top:8px}
+.cardX-list{margin:10px 0 0 16px;color:rgba(255,255,255,.70);font-size:12px;line-height:1.55}
+.cardX-list li{margin:6px 0}
+
+.certCard{display:flex;gap:12px;align-items:flex-start}
+.certIcon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-weight:900;
+  background: linear-gradient(135deg, rgba(124,92,255,.35), rgba(39,193,255,.18));
+  border:1px solid rgba(255,255,255,.10);
+}
+.pillRow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill{font-size:12px;padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.18);color:rgba(255,255,255,.75)}
+
+.searchBar{display:flex;gap:10px;align-items:center}
+.searchBar input{width:100%;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background: rgba(0,0,0,.20);color:var(--text);outline:none}
+
+@media (max-width: 980px){
+  .wrap{grid-template-columns: 1fr}
+  .sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .hero{grid-template-columns:1fr}
+  .heroRight{min-height:180px;border-left:0;border-top:1px solid rgba(255,255,255,.08)}
+  .grid3{grid-template-columns:1fr}
+  .grid2{grid-template-columns:1fr}
+}
+
+/* --- Certifications: Hybrid grid + modal --- */
+.certGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:12px;
+}
+@media (max-width: 980px){
+  .certGrid{grid-template-columns: 1fr;}
+}
+.certTile{
+  text-align:left;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  border-radius: 16px;
+  padding:14px;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  cursor:pointer;
+  transition:.15s ease;
+}
+.certTile:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.16);
+  background: rgba(255,255,255,.03);
+}
+.certBadge{width:64px;height:64px;object-fit:contain;flex:0 0 auto}
+.certMeta{min-width:0}
+.certName{font-weight:900;font-size:14px}
+.certSub{color:rgba(255,255,255,.55);font-size:12px;margin-top:4px;line-height:1.4}
+
+/* Modal */
+.modalOverlay{
+  position:fixed; inset:0; z-index:9999;
+  background: rgba(0,0,0,.65);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+.modal{
+  width:min(980px, 100%);
+  max-height: 90vh;
+  overflow:auto;
+  border-radius: 18px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(15,22,33,.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.45);
+}
+.modalHead{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 14px 8px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.modalTitle{font-weight:900}
+.modalSub{color:rgba(255,255,255,.55);font-size:12px;margin-top:4px}
+.modalActions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.modalBody{padding:14px}
+.modalImg{
+  width:100%;
+  height:auto;
+  border-radius: 14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.25);
+}
+.modalClose{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  border-radius: 12px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+.modalClose:hover{background: rgba(255,255,255,.05)}
+
+.avatar {
+    width: 50px;       /* Match your existing size */
+    height: 50px;
+    border-radius: 50%; /* Keeps it circular */
+    overflow: hidden;   /* Ensures the image doesn't spill out */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0b0e14; /* Optional: matches the icon's dark theme */
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the icon scales correctly without stretching */
+}
